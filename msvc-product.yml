@@ -9,7 +9,7 @@ resilience4j:
   timelimiter:
     instances:
       products:
-        timeoutDuration: 2s
+        timeoutDuration: 6s
         cancelRunningFuture: true
   circuitbreaker:
     instances:
