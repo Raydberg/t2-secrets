@@ -2,7 +2,7 @@ spring:
   application:
     name: msvc-user
   datasource:
-    url: jdbc:postgresql://db-2:5432/postgres
+    url: jdbc:postgresql://db:5432/postgres
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -15,20 +15,20 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
         use_sql_comments: true
-    security:
-      oauth2:
-        client:
-          registration:
-            google:
-              client-id: ${GOOGLE_CLIENT_ID}
-              client-secret: ${GOOGLE_CLIENT_SECRET}
-              scope: email,profile
-              redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
-          provider:
-            google:
-              authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
-              token-uri: https://oauth2.googleapis.com/token
-              user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope: email,profile
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+        provider:
+          google:
+            authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
+            token-uri: https://oauth2.googleapis.com/token
+            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
 
 secret-key: ${SECRET_KEY}
 
@@ -47,6 +47,3 @@ logging:
     org.springframework.security: TRACE
     org.springframework.web: DEBUG
     org.springframework.boot.autoconfigure.security: DEBUG
-    org.springframework.web.cloud.openfeign: DEBUG
-    org.springframework.web.client.RestTemplate: DEBUG
-    io.github.resilience4j: DEBUG
