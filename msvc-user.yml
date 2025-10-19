@@ -2,7 +2,7 @@ spring:
   application:
     name: msvc-user
   datasource:
-    url: jdbc:postgresql://db-2:5432/db_user
+    url: jdbc:postgresql://db-2:5432/postgres
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
