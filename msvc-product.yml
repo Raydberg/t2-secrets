@@ -6,13 +6,18 @@ server:
   port: ${MSVC_MEMBERS_PORT:9092}
 
 resilience4j:
+  timelimiter:
+    instances:
+      products:
+        timeoutDuration: 2s
+        cancelRunningFuture: true
   circuitbreaker:
     instances:
       products:
         registerHealthIndicator: true
-        slidingWindowSize: 3
+        slidingWindowSize: 5
         failureRateThreshold: 100
-        waitDurationInOpenState: 10s
+        waitDurationInOpenState: 15s
         permittedNumberOfCallsInHalfOpenState: 2
         minimumNumberOfCalls: 3
         automaticTransitionFromOpenToHalfOpenEnabled: true
