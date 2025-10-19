@@ -5,7 +5,22 @@ spring:
 server:
   port: ${MSVC_MEMBERS_PORT:9092}
 
-
+resilience4j:
+  circuitbreaker:
+    instances:
+      products:
+        registerHealthIndicator: true
+        slidingWindowSize: 3
+        failureRateThreshold: 100
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 2
+        minimumNumberOfCalls: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+  retry:
+    instances:
+      products:
+        maxAttempts: 3 
+        waitDuration: 500ms
 
 eureka:
   client:
